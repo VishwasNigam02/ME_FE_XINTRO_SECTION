@@ -1,5 +1,6 @@
 
-/* Reset */
+/* ---------- Reset and base styles ---------- */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,10 +8,10 @@
 }
 
 :root {
-  --color-text: #151515;
-  --color-muted: #696969;
-  --color-white: #ffffff;
-  --color-border: #696969;
+  --black: #151515;
+  --grey: #696969;
+  --white: #ffffff;
+  --page-bg: #fafafa;
 }
 
 html {
@@ -19,11 +20,10 @@ html {
 
 body {
   min-width: 320px;
-  background: #fafafa;
-  color: var(--color-text);
+  background: var(--page-bg);
+  color: var(--black);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  line-height: 1.5;
 }
 
 button,
@@ -47,11 +47,11 @@ a:focus-visible {
 }
 
 .page-wrapper {
-  width: 100%;
   min-height: 100vh;
 }
 
-/* Header and navigation */
+/* ---------- Header ---------- */
+
 .header {
   position: relative;
   z-index: 20;
@@ -62,7 +62,7 @@ a:focus-visible {
 }
 
 .logo {
-  display: flex;
+  display: inline-flex;
   flex-shrink: 0;
   align-items: center;
 }
@@ -72,6 +72,8 @@ a:focus-visible {
   width: 84px;
   height: auto;
 }
+
+/* ---------- Navigation ---------- */
 
 .navigation {
   display: flex;
@@ -97,7 +99,7 @@ a:focus-visible {
   gap: 7px;
   border: 0;
   background: transparent;
-  color: var(--color-muted);
+  color: var(--grey);
   cursor: pointer;
   font-size: 14px;
   transition: color 0.2s ease;
@@ -106,7 +108,7 @@ a:focus-visible {
 .nav-link:hover,
 .nav-link[aria-expanded="true"],
 .login-link:hover {
-  color: var(--color-text);
+  color: var(--black);
 }
 
 .dropdown-arrow {
@@ -119,19 +121,24 @@ a:focus-visible {
   transform: rotate(180deg);
 }
 
-/* Dropdowns */
+/* ---------- Dropdown menus ---------- */
+
 .dropdown-list {
   position: absolute;
   top: calc(100% + 15px);
   left: -12px;
   z-index: 30;
   display: none;
-  min-width: 150px;
+  min-width: 145px;
   padding: 12px;
   border-radius: 8px;
-  background: var(--color-white);
-  box-shadow: 0 10px 30px rgb(0 0 0 / 12%);
+  background: var(--white);
+  box-shadow: 0 10px 25px rgb(0 0 0 / 12%);
   list-style: none;
+}
+
+#features-dropdown {
+  min-width: 170px;
 }
 
 .has-dropdown.dropdown-open > .dropdown-list {
@@ -139,34 +146,33 @@ a:focus-visible {
   animation: dropdown-in 0.16s ease-out;
 }
 
-#features-dropdown {
-  min-width: 170px;
-}
-
 .dropdown-list li + li {
   margin-top: 7px;
 }
 
-.dropdown-list a {
+.dropdown-link {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 4px 5px;
-  color: var(--color-muted);
+  color: var(--grey);
   font-size: 13px;
   white-space: nowrap;
   transition: color 0.2s ease;
 }
 
-.dropdown-list a:hover {
-  color: var(--color-text);
+.dropdown-link:hover {
+  color: var(--black);
 }
 
-.dropdown-list a img {
+.dropdown-link img {
+  display: block;
   width: 15px;
   height: 15px;
   object-fit: contain;
 }
+
+/* ---------- Login and registration ---------- */
 
 .registration {
   display: flex;
@@ -176,21 +182,21 @@ a:focus-visible {
 
 .login-link,
 .register-link {
-  color: var(--color-muted);
+  color: var(--grey);
   font-size: 14px;
   transition: color 0.2s ease, background 0.2s ease;
 }
 
 .register-link {
   padding: 7px 17px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--grey);
   border-radius: 12px;
 }
 
 .register-link:hover {
-  border-color: var(--color-text);
-  background: var(--color-text);
-  color: var(--color-white);
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
 }
 
 .open-menu,
@@ -199,7 +205,8 @@ a:focus-visible {
   display: none;
 }
 
-/* Hero */
+/* ---------- Hero section ---------- */
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -207,6 +214,25 @@ a:focus-visible {
   gap: clamp(45px, 9vw, 140px);
   width: min(1110px, 84%);
   margin: 35px auto 0;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.hero-image picture {
+  display: block;
+  width: 100%;
+}
+
+.main-picture {
+  display: block;
+  width: 100%;
+  max-height: 610px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .hero-content {
@@ -229,7 +255,7 @@ a:focus-visible {
 .text-content p {
   max-width: 445px;
   margin-bottom: 32px;
-  color: var(--color-muted);
+  color: var(--grey);
   font-size: 16px;
   line-height: 1.65;
 }
@@ -240,10 +266,10 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   padding: 0 25px;
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--black);
   border-radius: 13px;
-  background: var(--color-text);
-  color: var(--color-white);
+  background: var(--black);
+  color: var(--white);
   font-size: 14px;
   font-weight: 700;
   transition: background 0.2s ease, color 0.2s ease;
@@ -251,27 +277,10 @@ a:focus-visible {
 
 .learn-more:hover {
   background: transparent;
-  color: var(--color-text);
+  color: var(--black);
 }
 
-.hero-image {
-  display: flex;
-  justify-content: center;
-  min-width: 0;
-}
-
-.hero-image picture {
-  display: block;
-  width: 100%;
-}
-
-.main-picture {
-  display: block;
-  width: 100%;
-  max-height: 610px;
-  object-fit: contain;
-  object-position: center;
-}
+/* ---------- Client logos ---------- */
 
 .clients {
   display: flex;
@@ -296,10 +305,11 @@ a:focus-visible {
   opacity: 1;
 }
 
-/* Footer */
+/* ---------- Footer ---------- */
+
 .attribution {
   padding: 38px 16px 20px;
-  color: var(--color-muted);
+  color: var(--grey);
   font-size: 12px;
   text-align: center;
 }
@@ -310,8 +320,10 @@ a:focus-visible {
 }
 
 .attribution a:hover {
-  color: var(--color-text);
+  color: var(--black);
 }
+
+/* ---------- Animations ---------- */
 
 @keyframes dropdown-in {
   from {
@@ -325,10 +337,11 @@ a:focus-visible {
   }
 }
 
-/* Tablet */
+/* ---------- Tablet ---------- */
+
 @media (max-width: 1000px) and (min-width: 768px) {
   .header {
-    gap: 35px;
+    gap: 30px;
     padding-inline: 3%;
   }
 
@@ -342,7 +355,7 @@ a:focus-visible {
 
   .hero {
     width: 90%;
-    gap: 45px;
+    gap: 40px;
   }
 
   .hero-content {
@@ -363,10 +376,11 @@ a:focus-visible {
   }
 }
 
-/* Mobile */
+/* ---------- Mobile navigation and hero ---------- */
+
 @media (max-width: 767px) {
   body {
-    background: var(--color-white);
+    background: var(--white);
   }
 
   .header {
@@ -414,6 +428,7 @@ a:focus-visible {
     z-index: 50;
     display: flex;
     width: min(65%, 300px);
+    height: 100vh;
     height: 100dvh;
     flex-direction: column;
     align-items: stretch;
@@ -421,7 +436,7 @@ a:focus-visible {
     gap: 28px;
     overflow-y: auto;
     padding: 75px 24px 30px;
-    background: var(--color-white);
+    background: var(--white);
     transform: translateX(100%);
     visibility: hidden;
     transition: transform 0.25s ease, visibility 0.25s ease;
@@ -469,7 +484,7 @@ a:focus-visible {
     align-items: center;
     justify-content: flex-start;
     gap: 12px;
-    color: var(--color-muted);
+    color: var(--grey);
     font-size: 16px;
     text-align: left;
   }
@@ -496,12 +511,12 @@ a:focus-visible {
     margin-top: 12px;
   }
 
-  .dropdown-list a {
+  .dropdown-link {
     gap: 12px;
     font-size: 15px;
   }
 
-  .dropdown-list a img {
+  .dropdown-link img {
     width: 17px;
     height: 17px;
   }

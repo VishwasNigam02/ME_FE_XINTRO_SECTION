@@ -1,10 +1,12 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  const page = document.body;
+  const body = document.body;
+
   const openMenuButton = document.querySelector(".open-menu");
   const closeMenuButton = document.querySelector(".close-menu");
   const overlay = document.querySelector(".overlay");
   const navigation = document.querySelector(".navigation");
+
   const dropdownItems = document.querySelectorAll(".has-dropdown");
   const dropdownButtons = document.querySelectorAll(
     ".has-dropdown > .nav-link"
@@ -19,13 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  const mobileQuery = window.matchMedia("(max-width: 767px)");
+
   function isMobile() {
-    return window.matchMedia("(max-width: 767px)").matches;
+    return mobileQuery.matches;
   }
 
   function closeDropdowns(exceptItem = null) {
     dropdownItems.forEach((item) => {
-      if (item === exceptItem) return;
+      if (item === exceptItem) {
+        return;
+      }
 
       item.classList.remove("dropdown-open");
 
@@ -37,76 +43,99 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function closeMobileMenu() {
-    page.classList.remove("menu-open");
+  function openMobileMenu() {
+    body.classList.add("menu-open");
+
+    openMenuButton.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+    navigation.setAttribute("aria-hidden", "false");
+
+    closeMenuButton.focus();
+  }
+
+  function closeMobileMenu(returnFocus = true) {
+    body.classList.remove("menu-open");
+
     openMenuButton.setAttribute("aria-expanded", "false");
     overlay.setAttribute("aria-hidden", "true");
+    navigation.setAttribute("aria-hidden", "true");
+
     closeDropdowns();
 
-    if (isMobile()) {
+    if (returnFocus && isMobile()) {
       openMenuButton.focus();
     }
   }
 
-  function openMobileMenu() {
-    page.classList.add("menu-open");
-    openMenuButton.setAttribute("aria-expanded", "true");
-    overlay.setAttribute("aria-hidden", "false");
-  }
-
+  // Mobile menu controls
   openMenuButton.addEventListener("click", openMobileMenu);
-  closeMenuButton.addEventListener("click", closeMobileMenu);
-  overlay.addEventListener("click", closeMobileMenu);
 
+  closeMenuButton.addEventListener("click", () => {
+    closeMobileMenu();
+  });
+
+  overlay.addEventListener("click", () => {
+    closeMobileMenu();
+  });
+
+  // Dropdown controls: click, not hover
   dropdownButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       event.stopPropagation();
 
       const item = button.closest(".has-dropdown");
-      const isAlreadyOpen = item.classList.contains("dropdown-open");
+      const isOpen = item.classList.contains("dropdown-open");
 
       closeDropdowns();
 
-      if (!isAlreadyOpen) {
+      if (!isOpen) {
         item.classList.add("dropdown-open");
         button.setAttribute("aria-expanded", "true");
       }
     });
   });
 
+  // Close dropdowns when clicking elsewhere
   document.addEventListener("click", (event) => {
     if (!event.target.closest(".has-dropdown")) {
       closeDropdowns();
     }
   });
 
+  // Escape key closes dropdowns and mobile navigation
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeDropdowns();
 
-      if (page.classList.contains("menu-open")) {
+      if (body.classList.contains("menu-open")) {
         closeMobileMenu();
       }
     }
   });
 
+  // Close the mobile menu when a navigation link is selected
   navigation.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       closeDropdowns();
 
-      if (isMobile() && page.classList.contains("menu-open")) {
+      if (isMobile() && body.classList.contains("menu-open")) {
         closeMobileMenu();
       }
     });
   });
 
-  window.addEventListener("resize", () => {
-    if (!isMobile()) {
-      page.classList.remove("menu-open");
-      openMenuButton.setAttribute("aria-expanded", "false");
-      overlay.setAttribute("aria-hidden", "true");
-    }
-
+  // Reset mobile-only state when switching to desktop
+  function handleViewportChange() {
     closeDropdowns();
-  });
+
+    if (!isMobile()) {
+      closeMobileMenu(false);
+    }
+  }
+
+  if (mobileQuery.addEventListener) {
+    mobileQuery.addEventListener("change", handleViewportChange);
+  } else {
+    window.addEventListener("resize", handleViewportChange);
+  }
 });

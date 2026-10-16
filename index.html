@@ -4,11 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Make remote work easier with Snap. Streamline processes, create team rituals, and boost productivity."
-  />
-  <title>Snap — Make Remote Work</title>
+  <title>Snap | Make Remote Work</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -30,7 +26,11 @@
 
       <div class="overlay" aria-hidden="true"></div>
 
-      <nav class="navigation" id="primary-navigation" aria-label="Main navigation">
+      <nav
+        class="navigation"
+        id="primary-navigation"
+        aria-label="Main navigation"
+      >
         <button class="close-menu" type="button" aria-label="Close menu">
           <img src="./assets/images/icon-close-menu.svg" alt="" />
         </button>
@@ -40,35 +40,39 @@
             <button
               class="nav-link first"
               type="button"
-              aria-label="todo-list"
+              aria-label="Features"
               aria-expanded="false"
               aria-controls="features-dropdown"
             >
               Features
-              <img class="dropdown-arrow" src="./assets/images/icon-arrow-down.svg" alt="" />
+              <img
+                class="dropdown-arrow"
+                src="./assets/images/icon-arrow-down.svg"
+                alt=""
+              />
             </button>
 
             <ul class="dropdown-list" id="features-dropdown">
               <li>
-                <a href="#">
+                <a class="dropdown-link first" href="#" aria-label="todo-list">
                   <img src="./assets/images/icon-todo.svg" alt="" />
                   Todo List
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a class="dropdown-link" href="#">
                   <img src="./assets/images/icon-calendar.svg" alt="" />
                   Calender
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a class="dropdown-link" href="#">
                   <img src="./assets/images/icon-reminders.svg" alt="" />
                   Reminders
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a class="dropdown-link" href="#">
                   <img src="./assets/images/icon-planning.svg" alt="" />
                   Planning
                 </a>
@@ -84,13 +88,17 @@
               aria-controls="company-dropdown"
             >
               Company
-              <img class="dropdown-arrow" src="./assets/images/icon-arrow-down.svg" alt="" />
+              <img
+                class="dropdown-arrow"
+                src="./assets/images/icon-arrow-down.svg"
+                alt=""
+              />
             </button>
 
             <ul class="dropdown-list" id="company-dropdown">
-              <li><a href="#">History</a></li>
-              <li><a href="#">Our Team</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><a class="dropdown-link" href="#">History</a></li>
+              <li><a class="dropdown-link" href="#">Our Team</a></li>
+              <li><a class="dropdown-link" href="#">Blog</a></li>
             </ul>
           </li>
 
@@ -129,11 +137,7 @@
         <div class="text-content">
           <h1>Make remote<br class="desktop-break" /> work</h1>
 
-          <p>
-            Get your team in sync, no matter your location.
-            Streamline processes, create team rituals, and watch
-            productivity soar.
-          </p>
+          <p>Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch productivity soar.</p>
 
           <a class="learn-more" href="#">Learn More</a>
         </div>
