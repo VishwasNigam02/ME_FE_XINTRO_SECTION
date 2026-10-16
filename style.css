@@ -1,6 +1,4 @@
 
-/* ---------- Reset and base styles ---------- */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,6 +36,7 @@ a {
 
 button {
   color: inherit;
+  cursor: pointer;
 }
 
 button:focus-visible,
@@ -50,7 +49,7 @@ a:focus-visible {
   min-height: 100vh;
 }
 
-/* ---------- Header ---------- */
+/* Header */
 
 .header {
   position: relative;
@@ -73,7 +72,7 @@ a:focus-visible {
   height: auto;
 }
 
-/* ---------- Navigation ---------- */
+/* Navigation */
 
 .navigation {
   display: flex;
@@ -100,12 +99,12 @@ a:focus-visible {
   border: 0;
   background: transparent;
   color: var(--grey);
-  cursor: pointer;
   font-size: 14px;
   transition: color 0.2s ease;
 }
 
 .nav-link:hover,
+.nav-link.link-open,
 .nav-link[aria-expanded="true"],
 .login-link:hover {
   color: var(--black);
@@ -121,7 +120,7 @@ a:focus-visible {
   transform: rotate(180deg);
 }
 
-/* ---------- Dropdown menus ---------- */
+/* Dropdowns */
 
 .dropdown-list {
   position: absolute;
@@ -146,11 +145,11 @@ a:focus-visible {
   animation: dropdown-in 0.16s ease-out;
 }
 
-.dropdown-list li + li {
+.dropdown-link + .dropdown-link {
   margin-top: 7px;
 }
 
-.dropdown-link {
+.dropdown-link a {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -161,7 +160,7 @@ a:focus-visible {
   transition: color 0.2s ease;
 }
 
-.dropdown-link:hover {
+.dropdown-link a:hover {
   color: var(--black);
 }
 
@@ -172,7 +171,7 @@ a:focus-visible {
   object-fit: contain;
 }
 
-/* ---------- Login and registration ---------- */
+/* Registration buttons */
 
 .registration {
   display: flex;
@@ -182,6 +181,8 @@ a:focus-visible {
 
 .login-link,
 .register-link {
+  border: 0;
+  background: transparent;
   color: var(--grey);
   font-size: 14px;
   transition: color 0.2s ease, background 0.2s ease;
@@ -205,7 +206,7 @@ a:focus-visible {
   display: none;
 }
 
-/* ---------- Hero section ---------- */
+/* Hero section */
 
 .hero {
   display: grid;
@@ -280,7 +281,7 @@ a:focus-visible {
   color: var(--black);
 }
 
-/* ---------- Client logos ---------- */
+/* Client logos */
 
 .clients {
   display: flex;
@@ -305,7 +306,7 @@ a:focus-visible {
   opacity: 1;
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 
 .attribution {
   padding: 38px 16px 20px;
@@ -323,8 +324,6 @@ a:focus-visible {
   color: var(--black);
 }
 
-/* ---------- Animations ---------- */
-
 @keyframes dropdown-in {
   from {
     opacity: 0;
@@ -337,7 +336,7 @@ a:focus-visible {
   }
 }
 
-/* ---------- Tablet ---------- */
+/* Tablet */
 
 @media (max-width: 1000px) and (min-width: 768px) {
   .header {
@@ -376,7 +375,7 @@ a:focus-visible {
   }
 }
 
-/* ---------- Mobile navigation and hero ---------- */
+/* Mobile */
 
 @media (max-width: 767px) {
   body {
@@ -401,7 +400,6 @@ a:focus-visible {
     justify-content: center;
     border: 0;
     background: transparent;
-    cursor: pointer;
   }
 
   .open-menu img {
@@ -410,14 +408,19 @@ a:focus-visible {
     height: auto;
   }
 
+  /* Only the uncovered area is used for the overlay.
+     This keeps its center visible to Cypress while the
+     navigation panel remains above the page. */
   .overlay {
     position: fixed;
-    inset: 0;
+    inset: 0 auto 0 0;
     z-index: 40;
     display: block;
+    width: calc(100% - min(65%, 300px));
     background: rgb(0 0 0 / 55%);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.25s ease, visibility 0.25s ease;
   }
 
@@ -450,6 +453,7 @@ a:focus-visible {
   .menu-open .overlay {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .close-menu {
@@ -463,7 +467,6 @@ a:focus-visible {
     justify-content: center;
     border: 0;
     background: transparent;
-    cursor: pointer;
   }
 
   .close-menu img {
@@ -484,7 +487,6 @@ a:focus-visible {
     align-items: center;
     justify-content: flex-start;
     gap: 12px;
-    color: var(--grey);
     font-size: 16px;
     text-align: left;
   }
@@ -507,11 +509,11 @@ a:focus-visible {
     min-width: 0;
   }
 
-  .dropdown-list li + li {
+  .dropdown-link + .dropdown-link {
     margin-top: 12px;
   }
 
-  .dropdown-link {
+  .dropdown-link a {
     gap: 12px;
     font-size: 15px;
   }
@@ -613,6 +615,10 @@ a:focus-visible {
 @media (max-width: 360px) {
   .navigation {
     width: 75%;
+  }
+
+  .overlay {
+    width: 25%;
   }
 
   .hero-content {
