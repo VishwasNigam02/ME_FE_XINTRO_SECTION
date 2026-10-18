@@ -9,6 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
     ".has-dropdown > .nav-link"
   );
 
+  if (!openMenu || !closeMenu || !navigation || !overlay) {
+    return;
+  }
+
+  function closeDropdowns() {
+    document.querySelectorAll(".has-dropdown").forEach((item) => {
+      item.classList.remove("link-open");
+
+      const button = item.querySelector(":scope > .nav-link");
+
+      if (button) {
+        button.classList.remove("link-open");
+        button.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   function setMenuOpen(isOpen) {
     navigation.classList.toggle("nav-open", isOpen);
     overlay.classList.toggle("overlay-open", isOpen);
@@ -18,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
     openMenu.setAttribute("aria-expanded", String(isOpen));
 
     document.body.classList.toggle("menu-open", isOpen);
+
+    if (!isOpen) {
+      closeDropdowns();
+    }
   }
 
   openMenu.addEventListener("click", () => {
@@ -35,17 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
   dropdownButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const parent = button.closest(".has-dropdown");
-      const isOpen = !parent.classList.contains("link-open");
 
-      document.querySelectorAll(".has-dropdown").forEach((item) => {
-        item.classList.remove("link-open");
+      if (!parent) return;
 
-        const itemButton = item.querySelector(":scope > .nav-link");
-        itemButton.classList.remove("link-open");
-        itemButton.setAttribute("aria-expanded", "false");
-      });
+      const shouldOpen = !parent.classList.contains("link-open");
 
-      if (isOpen) {
+      closeDropdowns();
+
+      if (shouldOpen) {
         parent.classList.add("link-open");
         button.classList.add("link-open");
         button.setAttribute("aria-expanded", "true");
@@ -64,13 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       setMenuOpen(false);
-
-      document.querySelectorAll(".has-dropdown").forEach((item) => {
-        item.classList.remove("link-open");
-        const button = item.querySelector(":scope > .nav-link");
-        button.classList.remove("link-open");
-        button.setAttribute("aria-expanded", "false");
-      });
     }
   });
 
