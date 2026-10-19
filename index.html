@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,52 +11,112 @@
 <body>
   <header class="site-header">
     <a class="logo" href="#" alt="Snap logo" aria-label="Snap home">
-      <img src="assets/images/logo.svg" alt="snap" />
+      <img src="assets/images/logo.svg" alt="Snap logo" />
     </a>
 
-    <button class="menu-toggle" type="button" aria-label="Open navigation menu"
-      aria-controls="primary-navigation" aria-expanded="false">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="primary-navigation"
+      aria-expanded="false"
+    >
       <img src="assets/images/icon-menu.svg" alt="" />
     </button>
 
     <div class="overlay" aria-hidden="true"></div>
 
-    <nav class="navigation" id="primary-navigation" aria-label="Main navigation" aria-hidden="true">
-      <button class="close-menu" type="button" aria-label="Close navigation menu">
+    <nav
+      class="navigation"
+      id="primary-navigation"
+      aria-label="Main navigation"
+      aria-hidden="false"
+    >
+      <button
+        class="close-menu"
+        type="button"
+        aria-label="Close navigation menu"
+      >
         <img src="assets/images/icon-close-menu.svg" alt="" />
       </button>
 
       <ul class="nav-list">
         <li class="nav-item has-dropdown">
-          <button class="nav-link first" type="button" aria-expanded="false">
-            Features <img class="chevron" src="assets/images/icon-arrow-down.svg" alt="" />
+          <button
+            class="nav-link first"
+            type="button"
+            aria-expanded="false"
+            aria-controls="features-dropdown"
+          >
+            Features
+            <img
+              class="chevron"
+              src="assets/images/icon-arrow-down.svg"
+              alt=""
+            />
           </button>
-          <ul class="dropdown-link">
-            <li><a href="#todo"><img src="assets/images/icon-todo.svg" alt="" />Todo List</a></li>
-            <li><a href="#calendar"><img src="assets/images/icon-calendar.svg" alt="" />Calendar</a></li>
-            <li><a href="#reminders"><img src="assets/images/icon-reminders.svg" alt="" />Reminders</a></li>
-            <li><a href="#planning"><img src="assets/images/icon-planning.svg" alt="" />Planning</a></li>
+
+          <ul class="dropdown-link" id="features-dropdown">
+            <li>
+              <a href="#todo">
+                <img src="assets/images/icon-todo.svg" alt="" />
+                Todo List
+              </a>
+            </li>
+            <li>
+              <a href="#calendar">
+                <img src="assets/images/icon-calendar.svg" alt="" />
+                Calendar
+              </a>
+            </li>
+            <li>
+              <a href="#reminders">
+                <img src="assets/images/icon-reminders.svg" alt="" />
+                Reminders
+              </a>
+            </li>
+            <li>
+              <a href="#planning">
+                <img src="assets/images/icon-planning.svg" alt="" />
+                Planning
+              </a>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item has-dropdown">
-          <button class="nav-link second" type="button" aria-expanded="false">
-            Company <img class="chevron" src="assets/images/icon-arrow-down.svg" alt="" />
+          <button
+            class="nav-link second"
+            type="button"
+            aria-expanded="false"
+            aria-controls="company-dropdown"
+          >
+            Company
+            <img
+              class="chevron"
+              src="assets/images/icon-arrow-down.svg"
+              alt=""
+            />
           </button>
-          <ul class="dropdown-link">
+
+          <ul class="dropdown-link" id="company-dropdown">
             <li><a href="#history">History</a></li>
             <li><a href="#team">Our Team</a></li>
             <li><a href="#blog">Blog</a></li>
           </ul>
         </li>
 
-        <li class="nav-item"><a class="plain-link" href="#careers">Careers</a></li>
-        <li class="nav-item"><a class="plain-link" href="#about">About</a></li>
+        <li class="nav-item">
+          <a class="plain-link" href="#careers">Careers</a>
+        </li>
+        <li class="nav-item">
+          <a class="plain-link" href="#about">About</a>
+        </li>
       </ul>
 
       <div class="registration">
-        <a class="login" href="#login">Login</a>
-        <button type="button">Register</button>
+        <button class="login" type="button">Login</button>
+        <button class="register" type="button">Register</button>
       </div>
     </nav>
   </header>
@@ -63,13 +124,24 @@
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <picture class="hero-art">
-        <source media="(max-width: 600px)" srcset="assets/images/image-hero-mobile.png" />
-        <img src="assets/images/image-hero-desktop.png" alt="A person working remotely on a laptop surrounded by colorful geometric shapes" />
+        <source
+          media="(max-width: 600px)"
+          srcset="assets/images/image-hero-mobile.png"
+        />
+        <img
+          src="assets/images/image-hero-desktop.png"
+          alt="A person working remotely on a laptop surrounded by colorful geometric shapes"
+        />
       </picture>
 
       <div class="hero-content">
         <h1 id="hero-title">Make<br class="desktop-break" /> remote work</h1>
-        <p>Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch productivity soar.</p>
+
+        <p>
+          Get your team in sync, no matter your location. Streamline processes,
+          create team rituals, and watch productivity soar.
+        </p>
+
         <a class="learn-more" href="#about">Learn more</a>
 
         <div class="client-logos" aria-label="Our clients">
