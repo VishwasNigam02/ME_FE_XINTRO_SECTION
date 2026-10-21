@@ -6,6 +6,7 @@
   --medium-gray: #696969;
   --almost-black: #151515;
   --purple: #7267e9;
+  --drawer-width: min(65%, 300px);
 }
 
 * {
@@ -182,6 +183,7 @@ button {
   color: #fff;
 }
 
+.open-menu,
 .menu-toggle,
 .close-menu {
   display: none;
@@ -278,6 +280,22 @@ button {
   max-height: 30px;
 }
 
+.attribution {
+  padding: 38px 16px 24px;
+  color: var(--medium-gray);
+  font-size: 12px;
+  text-align: center;
+}
+
+.attribution a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.attribution a:hover {
+  color: var(--almost-black);
+}
+
 @media (min-width: 1400px) {
   .hero {
     margin-top: 45px;
@@ -319,7 +337,7 @@ button {
 
 /* Mobile navigation and layout */
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   body.menu-open {
     overflow: hidden;
   }
@@ -334,6 +352,7 @@ button {
     width: 84px;
   }
 
+  .open-menu,
   .menu-toggle {
     display: inline-flex;
     align-items: center;
@@ -347,6 +366,7 @@ button {
     height: 28px;
   }
 
+  .open-menu img,
   .menu-toggle img {
     display: block;
     width: 32px;
@@ -356,8 +376,10 @@ button {
   .overlay {
     display: block;
     position: fixed;
-    inset: 0;
-    right: min(64%, 260px);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - var(--drawer-width));
     z-index: 20;
     background: rgb(0 0 0 / 65%);
     opacity: 0;
@@ -376,8 +398,8 @@ button {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    width: min(64%, 260px);
-    min-width: 230px;
+    width: var(--drawer-width);
+    min-width: 0;
     padding: 78px 22px 28px;
     overflow-y: auto;
     background: #fff;
@@ -554,13 +576,18 @@ button {
 }
 
 @media (max-width: 360px) {
+  :root {
+    --drawer-width: 68%;
+  }
+
   .navigation {
-    width: 72%;
+    width: var(--drawer-width);
     min-width: 0;
   }
 
   .overlay {
-    right: 72%;
+    width: calc(100% - var(--drawer-width));
+    right: auto;
   }
 
   .hero h1 {

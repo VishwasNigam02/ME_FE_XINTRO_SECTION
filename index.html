@@ -15,9 +15,9 @@
     </a>
 
     <button
-      class="menu-toggle"
+      class="open-menu menu-toggle"
       type="button"
-      aria-label="Open navigation menu"
+      aria-label="Open menu"
       aria-controls="primary-navigation"
       aria-expanded="false"
     >
@@ -35,7 +35,7 @@
       <button
         class="close-menu"
         type="button"
-        aria-label="Close navigation menu"
+        aria-label="Close menu"
       >
         <img src="assets/images/icon-close-menu.svg" alt="" />
       </button>
@@ -125,11 +125,12 @@
     <section class="hero" aria-labelledby="hero-title">
       <picture class="hero-art">
         <source
-          media="(max-width: 600px)"
-          srcset="assets/images/image-hero-mobile.png"
+          media="(min-width: 768px)"
+          srcset="assets/images/image-hero-desktop.png"
         />
         <img
-          src="assets/images/image-hero-desktop.png"
+          class="main-picture"
+          src="assets/images/image-hero-mobile.png"
           alt="A person working remotely on a laptop surrounded by colorful geometric shapes"
         />
       </picture>
@@ -144,7 +145,7 @@
 
         <a class="learn-more" href="#about">Learn more</a>
 
-        <div class="client-logos" aria-label="Our clients">
+        <div class="client-logos clients" aria-label="Our clients">
           <img src="assets/images/client-databiz.svg" alt="databiz" />
           <img src="assets/images/client-audiophile.svg" alt="audiophile" />
           <img src="assets/images/client-meet.svg" alt="meet" />
@@ -153,6 +154,12 @@
       </div>
     </section>
   </main>
+
+  <footer class="attribution">
+    Challenge by
+    <a href="https://crio.do" target="_blank" rel="noopener noreferrer">Crio.do</a>.
+    Coded by <a href="#" target="_blank" rel="noopener noreferrer">Ketan</a>.
+  </footer>
 
   <script src="script.js"></script>
 </body>

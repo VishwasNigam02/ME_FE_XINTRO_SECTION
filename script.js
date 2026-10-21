@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-  const menuToggle = document.querySelector(".menu-toggle");
+  const menuToggle = document.querySelector(".open-menu");
   const closeMenu = document.querySelector(".close-menu");
   const overlay = document.querySelector(".overlay");
   const navigation = document.querySelector(".navigation");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".has-dropdown > .nav-link"
   );
 
-  const mobileQuery = window.matchMedia("(max-width: 600px)");
+  const mobileQuery = window.matchMedia("(max-width: 767px)");
 
   function setMenuOpen(open) {
     body.classList.toggle("menu-open", open);
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle?.setAttribute("aria-expanded", String(open));
     menuToggle?.setAttribute(
       "aria-label",
-      open ? "Close navigation menu" : "Open navigation menu"
+      open ? "Close menu" : "Open menu"
     );
 
     navigation?.setAttribute(
